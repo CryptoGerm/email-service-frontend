@@ -18,7 +18,6 @@ const App = props => {
   return (
     <div>
       <Switch>
-        <Route exact path="/register" component={RegisterPage} />
         <Route
           exact
           path="/"
@@ -26,12 +25,13 @@ const App = props => {
             isAuthentificated ? <Redirect to="/dashboard" /> : <LoginPage />
           }
         />
+        <Route exact path="/register" component={RegisterPage} />
         {isAuthentificated ? (
-          <>
+          <Switch>
             <Route exact path="/dashboard" component={DashboardPage} />
             <Route exact path="/create-mail" component={CreateMail} />
             <Route exact path="/sent-mails" component={SentMails} />
-          </>
+          </Switch>
         ) : (
           <Redirect to="/" />
         )}

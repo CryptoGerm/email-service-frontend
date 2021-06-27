@@ -21,12 +21,12 @@ const loginSlice = createSlice({
       state.login.data = action.payload.data;
     },
     loginSuccess: (state, action) => {
-      state.login.status = action.payload.data.status;
+      state.login.status = 'ok';
       state.login.message = action.payload.data.message;
       state.login.data = action.payload.data.data;
     },
     loginFailure: (state, action) => {
-      state.login.status = action.payload.data.status;
+      state.login.status = 'error';
       state.login.message = action.payload.data.message;
       state.login.data = action.payload.data.data;
     },
@@ -34,12 +34,12 @@ const loginSlice = createSlice({
       state.loginGoogle.data = action.payload.data;
     },
     loginGoogleSuccess: (state, action) => {
-      state.loginGoogle.status = action.payload.data.status;
+      state.loginGoogle.status = 'ok';
       state.loginGoogle.message = action.payload.data.message;
       state.loginGoogle.data = action.payload.data.data;
     },
     loginGoogleFailure: (state, action) => {
-      state.loginGoogle.status = action.payload.data.status;
+      state.loginGoogle.status = 'error';
       state.loginGoogle.message = action.payload.data.message;
       state.loginGoogle.data = action.payload.data.data;
     },
