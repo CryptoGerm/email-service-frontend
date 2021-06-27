@@ -3,8 +3,17 @@ import { connect } from 'react-redux';
 import { compose } from '@reduxjs/toolkit';
 import { injectReducer, injectSaga } from 'redux-injectors';
 import _pick from 'lodash/pick';
-
-import { Form, Input, Button, Layout, Row, Col, message } from 'antd';
+import { Link } from 'react-router-dom';
+import {
+  Form,
+  Input,
+  Button,
+  Layout,
+  Row,
+  Col,
+  message,
+  Typography,
+} from 'antd';
 
 import {
   name as registerName,
@@ -37,9 +46,15 @@ class RegisterPage extends Component {
   render() {
     return (
       <Layout style={{ height: '100vh' }}>
-        <Content>
+        <Content style={{ background: '#fff' }}>
           <Row justify="center">
-            <Form name="register" onFinish={this.onFinish}>
+            <Col span={8} style={{ textAlign: 'center' }}>
+              <Typography.Title>Stutis Mailooo</Typography.Title>
+              <Typography.Title level={2}>Register</Typography.Title>
+            </Col>
+          </Row>
+          <Row justify="center">
+            <Form name="register" layout="vertical" onFinish={this.onFinish}>
               <Col span={24}>
                 <Form.Item
                   label="Name"
@@ -104,6 +119,11 @@ class RegisterPage extends Component {
                 >
                   <Input.Password />
                 </Form.Item>
+                <Row style={{ padding: '10px 0' }}>
+                  <Typography.Text>
+                    Already have an account? <Link to="/login">Login</Link>
+                  </Typography.Text>
+                </Row>
                 <Form.Item>
                   <Button type="primary" htmlType="submit">
                     Submit

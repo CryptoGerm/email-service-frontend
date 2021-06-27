@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { compose } from '@reduxjs/toolkit';
 import { injectReducer, injectSaga } from 'redux-injectors';
-import { Form, Input, Button, Layout, Row, Col } from 'antd';
+import { Form, Input, Button, Layout, Row, Col, Typography } from 'antd';
 import { GoogleLogin } from 'react-google-login';
+import { Link } from 'react-router-dom';
 
 import _pick from 'lodash/pick';
 
@@ -30,10 +31,16 @@ class LoginPage extends Component {
   render() {
     return (
       <Layout style={{ height: '100vh' }}>
-        <Content>
+        <Content style={{ background: '#fff' }}>
           <Row justify="center">
-            <Form name="login" onFinish={this.onFinish}>
-              <Col span={24}>
+            <Col span={8} style={{ textAlign: 'center' }}>
+              <Typography.Title>Stutis Mailooo</Typography.Title>
+              <Typography.Title level={2}>Login</Typography.Title>
+            </Col>
+          </Row>
+          <Row justify="center">
+            <Col span={8}>
+              <Form name="login" layout="vertical" onFinish={this.onFinish}>
                 <Form.Item
                   label="Email"
                   name="email"
@@ -58,29 +65,31 @@ class LoginPage extends Component {
                 >
                   <Input.Password />
                 </Form.Item>
-
-                <Col span={24}>
-                  <Row justify="space-between">
-                    <Col span={12}>
-                      <Form.Item>
-                        <Button type="primary" htmlType="submit">
-                          Submit
-                        </Button>
-                      </Form.Item>
-                    </Col>
-                    <Col span={12}>
-                      <GoogleLogin
-                        clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-                        buttonText="Login"
-                        onSuccess={this.responseGoogle}
-                        onFailure={this.responseGoogle}
-                        cookiePolicy="single_host_origin"
-                      />
-                    </Col>
-                  </Row>
-                </Col>
-              </Col>
-            </Form>
+                <Row style={{ padding: '10px 0' }}>
+                  <Typography.Text>
+                    Don&apos;t have an account?{' '}
+                    <Link to="/register">Register</Link>
+                  </Typography.Text>
+                </Row>
+                <Row justify="space-between" style={{ padding: '10px 0' }}>
+                  <Col span={12}>
+                    <Form.Item>
+                      <Button type="primary" htmlType="submit">
+                        Submit
+                      </Button>
+                    </Form.Item>
+                  </Col>
+                  <Col span={12}>
+                    <GoogleLogin
+                      clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+                      buttonText="Login"
+                      onSuccess={this.responseGoogle}
+                      cookiePolicy="single_host_origin"
+                    />
+                  </Col>
+                </Row>
+              </Form>
+            </Col>
           </Row>
         </Content>
       </Layout>
